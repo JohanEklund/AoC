@@ -13,3 +13,7 @@ let UpgA =
 
 
 
+let UpgB =
+    let inputFile = "./AoC2019/Day5/input.txt"
+    let input = readCommaSeparatedInt inputFile
+    printfn "BEGIN B"
