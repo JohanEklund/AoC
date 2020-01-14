@@ -7,9 +7,10 @@ open AoCUtil
 let UpgA =
     let inputFile = "./AoC2019/Day5/input.txt"
     let input = readCommaSeparatedInt inputFile
-    let runtime = { program = input; pointer = 0 }
-    printfn "BEGIN"
-    handleProgram runtime 1 |> ignore
+    let runtime = { program = input; pointer = 0; input = 1 }
+    printfn "BEGIN A"
+    handleProgram runtime |> ignore
+    
 
 
 
