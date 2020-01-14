@@ -1,7 +1,9 @@
+#load "./computerTypes.fsx"
 #load "./computer.fsx"
 #load "./AoCUtil.fsx"
 
 open Computer
+open ComputerTypes
 open AoCUtil
 
 let UpgA =
@@ -11,9 +13,6 @@ let UpgA =
     printfn "BEGIN A"
     handleProgram runtime |> ignore
     
-
-
-
 let UpgB =
     let inputFile = "./AoC2019/Day5/input.txt"
     let input = readCommaSeparatedInt inputFile
