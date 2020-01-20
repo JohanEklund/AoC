@@ -22,11 +22,21 @@ let secondParamMode ins =
         | 0 -> ParamMode.Positional
         | 1 -> ParamMode.Immediate
 
-let getTwoParamOperation runtime =
+let getAdd runtime =
     let ins = runtime.program.[runtime.pointer]
     let firstMode = firstParamMode ins
     let secondMode = secondParamMode ins
-    AddOrMultiply{
+    Add{
+        p1 = { Value=runtime.program.[runtime.pointer+1]; Mode=secondMode};
+        p2 = { Value=runtime.program.[runtime.pointer+2]; Mode=firstMode};
+        output = runtime.program.[runtime.pointer+3]
+    }
+
+let getMultiply runtime =
+    let ins = runtime.program.[runtime.pointer]
+    let firstMode = firstParamMode ins
+    let secondMode = secondParamMode ins
+    Multiply{
         p1 = { Value=runtime.program.[runtime.pointer+1]; Mode=secondMode};
         p2 = { Value=runtime.program.[runtime.pointer+2]; Mode=firstMode};
         output = runtime.program.[runtime.pointer+3]
@@ -86,7 +96,8 @@ let getOperation runtime =
     let ins = getCurrentInstruction runtime
     ins % 100
     |> function
-        | 1 | 2 -> getTwoParamOperation runtime
+        | 1 -> getAdd runtime
+        | 2 -> getMultiply runtime
         | 3 -> getInput1 runtime
         | 4 -> getOutput1 runtime
         | 5 -> getJumpTrue runtime
@@ -96,7 +107,8 @@ let getOperation runtime =
 
 let incrementPointer ins curr =
     match ins with    
-    | AddOrMultiply (_) -> curr + 4
+    | Add (_) -> curr + 4
+    | Multiply (_) -> curr + 4
     | Input1 (_) -> curr + 2
     | Output1 (_) -> curr + 2
     | JumpTrue (_) -> curr + 3
@@ -113,11 +125,16 @@ let paramValue param (program: int list) =
 let replaceProgram runtime newProgram =
     { program = newProgram; pointer=runtime.pointer; input=runtime.input }
 
-let doAddOrMultiply ins (p: AddOrMultiply) runtime =
-    let p1 = paramValue p.p1 runtime.program
-    let p2 = paramValue p.p2 runtime.program
-    let res = performAddOrMultiply ins p1 p2
-    replaceValueAt runtime.program p.output res
+let doAdd (op: Add) runtime =
+    let p1 = paramValue op.p1 runtime.program
+    let p2 = paramValue op.p2 runtime.program
+    replaceValueAt runtime.program op.output (p1 + p2)
+    |> replaceProgram runtime
+
+let doMultiply (op: Multiply) runtime =
+    let p1 = paramValue op.p1 runtime.program
+    let p2 = paramValue op.p2 runtime.program
+    replaceValueAt runtime.program op.output (p1 * p2)
     |> replaceProgram runtime
 
 let Op3 runtime (op : Input1) =
@@ -169,7 +186,8 @@ let handleInstruction runtime =
     let ins = getCurrentInstruction runtime
     let op = getOperation runtime
     let newRuntime = match op with
-                        | AddOrMultiply (x) -> doAddOrMultiply ins x runtime
+                        | Add (x) -> doAdd x runtime
+                        | Multiply (x) -> doMultiply x runtime
                         | Input1 (x) -> Op3 runtime x
                         | Output1 (x) -> Op4 runtime x
                         | JumpTrue (x) -> doJumpTrue runtime x

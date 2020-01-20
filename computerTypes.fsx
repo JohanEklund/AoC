@@ -4,7 +4,9 @@ type ParamMode = Positional=0 | Immediate=1
 
 type Parameter = { Value: int; Mode: ParamMode }
 
-type AddOrMultiply = { p1: Parameter; p2: Parameter; output: int }
+type Add = { p1: Parameter; p2: Parameter; output: int }
+
+type Multiply = { p1: Parameter; p2: Parameter; output: int }
 
 type Input1 = { input: int; output: int }
 
@@ -19,7 +21,8 @@ type LessThan = { p1: Parameter; p2: Parameter; output: int }
 type Equals = { p1: Parameter; p2: Parameter; output: int }
 
 type Operation =
-    | AddOrMultiply of AddOrMultiply
+    | Add of Add
+    | Multiply of Multiply
     | Input1 of Input1
     | Output1 of Output1
     | JumpTrue of JumpTrue
