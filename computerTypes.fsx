@@ -1,33 +1,25 @@
 module ComputerTypes
 
-type ParamMode = Positional=0 | Immediate=1
+type ParamMode = Positional | Immediate
 
 type Parameter = { Value: int; Mode: ParamMode }
 
-type Add = { p1: Parameter; p2: Parameter; output: int }
+type TwoParameterOneOutput = { p1: Parameter; p2: Parameter; output: int }
 
-type Multiply = { p1: Parameter; p2: Parameter; output: int }
+type TwoParameters = { p1: Parameter; p2: Parameter }
 
 type Input1 = { input: int; output: int }
 
 type Output1 = { output: Parameter }
 
-type JumpTrue = { p1: Parameter; p2: Parameter }
-
-type JumpFalse = { p1: Parameter; p2: Parameter }
-
-type LessThan = { p1: Parameter; p2: Parameter; output: int }
-
-type Equals = { p1: Parameter; p2: Parameter; output: int }
-
 type Operation =
-    | Add of Add
-    | Multiply of Multiply
+    | Add of TwoParameterOneOutput
+    | Multiply of TwoParameterOneOutput
     | Input1 of Input1
     | Output1 of Output1
-    | JumpTrue of JumpTrue
-    | JumpFalse of JumpFalse
-    | LessThan of LessThan
-    | Equals of Equals
+    | JumpTrue of TwoParameters
+    | JumpFalse of TwoParameters
+    | LessThan of TwoParameterOneOutput
+    | Equals of TwoParameterOneOutput
 
 type Runtime = { program: int list; pointer: int; input: int }
