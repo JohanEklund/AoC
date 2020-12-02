@@ -1,8 +1,0 @@
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\bin\Debug\netstandard2.0\Library.deps.json
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\bin\Debug\netstandard2.0\Library.dll
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\bin\Debug\netstandard2.0\Library.pdb
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\obj\Debug\netstandard2.0\Library.fsprojAssemblyReference.cache
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\obj\Debug\netstandard2.0\Library.AssemblyInfoInputs.cache
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\obj\Debug\netstandard2.0\Library.AssemblyInfo.fs
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\obj\Debug\netstandard2.0\Library.dll
-C:\Users\Johan\Documents\Kod\AoC2019\src\Library\obj\Debug\netstandard2.0\Library.pdb
