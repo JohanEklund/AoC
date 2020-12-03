@@ -37,7 +37,7 @@ let countTrees slope (grid: string list) =
 let a = input 
         |> countTrees 3
 
-let b : int64 =
+let b =
     [
         countTrees 1 input;
         countTrees 3 input;
