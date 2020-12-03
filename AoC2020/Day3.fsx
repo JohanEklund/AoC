@@ -37,21 +37,19 @@ let countTrees slope (grid: string list) =
 let a = input 
         |> countTrees 3
 
-
-let b : int64 = 
-    let x1 = input
-            |> countTrees 1
-    let x2 = input
-            |> countTrees 3
-    let x3 = input
-            |> countTrees 5
-    let x4 = input
-            |> countTrees 7
-    let x5 = input
+let b : int64 =
+    [
+        countTrees 1 input;
+        countTrees 3 input;
+        countTrees 5 input;
+        countTrees 7 input;
+        input
             |> List.mapi (fun i e ->
                 match i % 2 with
                     | 0 -> Some e
                     | _ -> None)
             |> List.choose (id)
-            |> countTrees 1
-    int64(x1) * int64(x2) * int64(x3) * int64(x4) * int64(x5)
+            |> countTrees 1;
+    ]
+    |> List.map (fun e -> int64(e))
+    |> List.reduce ( * )
