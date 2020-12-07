@@ -17,15 +17,16 @@ let testInput1 =
         "dotted black bags contain no other bags."
     ]
 
-let testInput2 = [
-    "shiny gold bags contain 2 dark red bags.";
-    "dark red bags contain 2 dark orange bags.";
-    "dark orange bags contain 2 dark yellow bags.";
-    "dark yellow bags contain 2 dark green bags.";
-    "dark green bags contain 2 dark blue bags.";
-    "dark blue bags contain 2 dark violet bags.";
-    "dark violet bags contain no other bags."
-]
+let testInput2 =
+    [
+        "shiny gold bags contain 2 dark red bags.";
+        "dark red bags contain 2 dark orange bags.";
+        "dark orange bags contain 2 dark yellow bags.";
+        "dark yellow bags contain 2 dark green bags.";
+        "dark green bags contain 2 dark blue bags.";
+        "dark blue bags contain 2 dark violet bags.";
+        "dark violet bags contain no other bags."
+    ]
 
 
 let strToBag (str: string) =
@@ -57,11 +58,9 @@ let rec concatLists l1 l2 =
     | hd::tl -> concatLists (l1 @[hd]) tl
 
 let rec countPossible (str: string list) bags (possible: string Set) =
-    // printfn "input: %A \n\n" str
     if str.Length = 0 then possible
     else 
         let res = getPossible str.[0] bags |> List.map (fun e -> e.Color)
-        // printfn "%s can be in %A" str.[0] res
         let newStr = concatLists str res
         let newPos = addItemsToSet possible res
         match newStr with
@@ -87,7 +86,7 @@ let rec countChildren allBags (bag: Bag) =
 
 
 let example1 =
-    let input = testInput1 //readLines "./input7.txt"
+    let input = testInput1
                 |> List.map(strToBag)
     let firstBag = input |> List.reduce(fun e i -> if e.Color = "shiny gold" then e else i)
     printfn "firstBag: %A" firstBag
@@ -96,7 +95,7 @@ let example1 =
 
 
 let example2 =
-    let input = testInput2 //readLines "./input7.txt"
+    let input = testInput2
                 |> List.map(strToBag)
     let firstBag = input |> List.reduce(fun e i -> if e.Color = "shiny gold" then e else i)
     printfn "firstBag: %A" firstBag
