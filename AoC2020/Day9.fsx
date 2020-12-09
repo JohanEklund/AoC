@@ -57,15 +57,35 @@ let rec findFirstNotSum prev input =
             let newPrev = addToPrev hd prev
             findFirstNotSum newPrev tl
 
+let rec trySumUntil target (all: int64 list) skip take =
+    let t = all |> List.skip skip |> List.take take
+    if t |> List.sum = target
+    then (List.min t, List.max t)
+    else 
+        if all.[(skip+take)] = target
+        then trySumUntil target all (skip+1) 2
+        else trySumUntil target all skip (take+1)
+
 let solveA input preambleSize =
     let all = input |> List.map(int64)
     let initial =  all |> List.take preambleSize
     let input = all |> List.skip preambleSize |> List.take (all.Length - preambleSize)
     findFirstNotSum initial input
 
+let solveB input preambleSize =
+    let target = solveA input preambleSize
+    let (x, y) = trySumUntil target (input |> List.map(int64)) 0 2
+    x + y
+
 let example1 =
     solveA testInput 5
 
+let example2 =
+    solveB testInput 5
 
 let a =
     solveA (readLines "./AoC2020/input9.txt") 25
+
+let b =
+    solveB (readLines "./AoC2020/input9.txt") 25
+
