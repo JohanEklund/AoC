@@ -1,0 +1,6 @@
+*/bin/*
+*/obj/*
+.ionide/*
+*/.ionide/*
+AoC2020/.ionide/symbolCache.db
+input.txt
