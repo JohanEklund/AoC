@@ -20,3 +20,9 @@ let readCommaSeparatedStr filePath =
     |> Seq.map (fun e -> Seq.toList e)
     |> Seq.toList
 
+let printAll arr =
+    arr |> List.iter (fun f -> printfn "%O" f)
+    id
+
+let printAllSeq s =
+    s |> Seq.toList |> printAll
