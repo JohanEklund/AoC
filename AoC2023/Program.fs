@@ -4,6 +4,7 @@ open AoCUtil
 open Day1
 open Day2
 open Day3
+open Day4
 
 // printfn " === Day 1 === "
 // printfn "Day1 A: %i" day1A
@@ -13,6 +14,12 @@ open Day3
 // printfn "Day2 A: %A" day2A
 // printfn "Day2 B: %A" day2B
 
-printfn " === Day 3 === "
-printfn "Day3 A: %A" day3A
-printfn "Day3 B: %A" day3B
+// printfn " === Day 3 === "
+// printfn "Day3 A: %A" day3A
+// printfn "Day3 B: %A" day3B
+
+printfn " === Day 4 === "
+printfn "Day4 A: %A" day4A
+printf "Day4 B: %A" day4B
+
+
