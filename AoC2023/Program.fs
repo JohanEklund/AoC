@@ -6,6 +6,7 @@ open Day2
 open Day3
 open Day4
 open Day5
+open Day6
 
 // printfn " === Day 1 === "
 // printfn "Day1 A: %i" day1A
@@ -27,4 +28,6 @@ open Day5
 // printfn "%A" day5A
 // printfn "%A" day5B
 
-
+printfn " === Day 5 === "
+printfn "%A" day6A
+printfn "%A" day6B
